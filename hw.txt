@@ -1,0 +1,47 @@
+----------HOMEWORK 2----------
+-  Why is it necessary to isolate Virtual Machines from each other?
+Each virtual machine has its own processes that are unique and handled by the
+OS on each VM. Not isolating the VMs would cause data corruption and
+inefficiencies in addition to security issues.
+
+-  Why it is necessary to support unmodified application binaries in Xen?
+So you can support and run many different applications on different
+OSs with the XEN hypervisor. This would encourage people to develop once
+and run it on XEN.
+
+-  Explain the differences between full virtualization & paravirtualization?
+Full virtualization is defined as when the guest OS does not know it is
+running on another OS.
+Paravirtualization is defined as when the guest OS knows that it runs
+on a layer on top of the existing OS on the hardware. This implies
+that the guest OS cannot directly issue hardware commands.
+
+-  Xen uses an optimization technique of 'fast' exception handler to improve
+performance of guest OS's system calls.
+Explain in your own words how does this technique work.
+
+Fast exception handlers in XEN works by XEN registering a page table of
+each process directly with the underlying hardware. This decreases latency
+as the guest OS doesn't have to go through XEN, but rather directly to
+the hardware to execute hardware commands and system calls.
+
+-  What is Domain0 in Xen?
+Domain0 is the privileged state that XEN creates on boot to manage other domains.
+
+-  Virtualizing CPU is difficult on x86 architecture
+True. Full is impossible. Para is hard.
+
+-  On x86 CPUs, zero is the least privileged level and three is the most privileged level
+False. zero is the most priveleged, three is the least.
+
+-  Hypercall is the mechanism used by guest domains to make a call into Xen
+True
+
+-  Hypercall is an asynchronous mechanism
+False, it must be synchronous. The Guest OS has to manually make a call
+for hypercall to happen.
+
+-  There is no mechanism in Xen hypervisor similar to Unix Signal mechanism
+False, Communications similar to Signal
+
+----------HOMEWORK 3----------
