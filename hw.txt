@@ -19,9 +19,9 @@ that the guest OS cannot directly issue hardware commands.
 -  Xen uses an optimization technique of 'fast' exception handler to improve
 performance of guest OS's system calls.
 Explain in your own words how does this technique work.
-
 Fast exception handlers in XEN works by XEN registering a page table of
-each process directly with the underlying hardware. This decreases latency
+each process directly with the underlying hardware. Before registering, XEN
+verifies the integrity of the page table. This action decreases latency
 as the guest OS doesn't have to go through XEN, but rather directly to
 the hardware to execute hardware commands and system calls.
 

@@ -1,0 +1,80 @@
+1)  Explain in your own words the concept of Eventual Consistency.
+
+Eventual Consistency is the idea of sacrificing consistency in the name of availability, that you can receive stale values for a read right after write, but eventually, you will get the correct value.
+
+2)  Explain in your own words how consistent hashing technique works.
+
+Consistent Hashing is the idea of a range based hashing system that is circular. It demonstrates a ring structure and prevents rehashing when adding/deleting nodes
+
+3)  Explain what does it mean when SLA for a system is defined to be
+99.8th percentile at a given
+latency value (say, 300 ms).
+
+99.8% of requests are faster than 300ms (out of 1k requests, 998 faster than 300ms)
+
+4)  What is the difference between resource-based policies and IAM
+policies in AWS.
+
+Resource-based policies manage resources such as S3, EC2, DynamoDB, where as IAM policies are used to manage permissions for IAM Users created by the AWS account.
+
+5)  What is access control?
+
+Access control is a set of policies given to manage how/when/where/why and under what circumstances certain permissions are given.
+
+6)  Explain the difference between access control and authentication.
+
+Authentication is used to verify your identity into the system (think of it as logging into AWS web console, or verifying over SSH), and access control is after authentication, what you have access to.
+
+7)  True of False:
+-  In consistent hashing object key is rehashed when a node
+joins/leaves
+False, it is not rehashed
+
+
+-  Policy variables enable defining same policy for multiple users
+because some parts of
+the policy definition is templatized
+True
+
+
+8) Given a IAM policy definition explain in English what does it do.
+Defines permissions for IAM Users that can be reused
+
+
+9) What is the "Principal" attribute in AWS policy definitions. What is
+its value for a typical
+IAM policy. What is its value for a typical resource-based policy.
+
+
+
+10) What is the Hinted Handoff technique in Dynamo?
+If the coordinator node goes down, the top nodes in the preference list of that coordinator node will take over the slack of the coordinator and store all the data associated with it. When it goes back up, the preference listed nodes will send the data back to the coordinator nodes, and the coordinator node will get back up to operation.
+
+
+11) Write a IAM policy definition for some requirement that will be given.
+SKIP CUZ WE DUM
+
+
+12) What is the idea behind UserData in Amazon EC2
+
+
+
+13) What is the difference between Region and Availability zone in AWS? In
+your assignment 1, we
+had asked you to specify the region name in the README. Why was that
+necessary?
+14) True or False:
+-  In AWS, Instance Profile is the name of the image that is used to
+spin up an EC2 instance.
+False. AMI
+
+
+15) List some of the issues that one should consider when designing a data
+storage service that is
+subject to the CAP theorem
+If you have a partition, determine which of the two availability and consistency you prefer.
+
+
+16) Explain how authentication works in AWS
+Authentication is getting into the system via either the web shit
+Or authenticating into the MAC (Message access code), Access Key and access key ID given and configured by aws configure and located on IAM users, all used to ensure that the proper user with the given permissions is allowed into AWS
