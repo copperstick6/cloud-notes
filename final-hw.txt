@@ -346,3 +346,35 @@ You would have this proxy authenticate with GCP and have permissions to connect 
 Not doing 9. Screw that.
 
 Homework 12
+1)  Explain in your own words what is load balancing.
+Distributing work across a lot of different nodes from a single IP to maximize throughput and minimize response time
+
+2)  Explain advantages of using a load balancer within an application architecture.
+
+Supporting more clients is possible by sending/redirecting client requests to different application instances, faster responses to client requests, increased availability of the application, scaling of application is possible, app URL doesn't change, security in one place
+
+3)  Explain the role of a load balancer plays in a CICD setup.
+In blue green deployment, route a bit of traffic to the new green node
+
+4)  Compare and contrast assignments 4, 5, 6 with respect to their use of a load balancer.
+Assignment 4 used ElasticBeanstalk Load Balancer.
+Assignment 5 and 6 used Kubernetes to handle the load balancing.
+
+5)  What is SSL termination?
+It's the process of decrypting HTTPS traffic
+
+6)  In typical setups application architecture where is SSL termination implemented? Why?
+Load balancer or on the server end. You want to have the pwoer to encrypt/decrypt from https at server end. In the case of a load balancer, you don't want to do it at every instance.
+
+7)  Explain what is monitoring and why is it needed?
+
+Monitoring means to periodically check the state of a software entity. This is needed for a seamless user experience (monitor something and take actions when something is not responsive), make best utilization of compute resources (if it is down, it's still running and you are paying for it), determine whether new instances should be spun up
+
+8)  Autoscaling is a feature where number of application instances are increased/decreased automatically. With this understanding explain the following statement:"Autoscaling of any PaaS is made possible only by the existence of a monitoring solution and a load balancing solution."
+Agreed. This is how the PaaS gets information that it needs to scale up and then how load is distributed across all the new instances.
+
+9)  Explain what all things you might want to monitor in your assignment 5?
+Balancing load
+
+10) Explain what all things you might want to monitor in your assignment 6?
+Post deployment verification. Also same monitoring from #9.
