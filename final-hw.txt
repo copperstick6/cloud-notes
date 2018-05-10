@@ -310,3 +310,39 @@ DevOps refers to the following
 Not doing 12. LUL
 
 Homework 11
+
+1)  In your own words explain how Google Cloud Authentication works
+GCA works with gcloud auth login gives you a 1 hour login token, IAM allows you access to resource via permissions/roles/policies, and you also can get API keys for some stuff
+
+2)  What is the Service Account based approach for configuring user access in GCP
+Service based account access is where you download a JSON file from Google Cloud after creating the service account and then configure it with gloud cli
+
+3)  State if following statements are True or False:
+a)  In GCP IAM, authorization policies can be defined at any level in Resource hierarchy
+True
+b)  In GCP IAM, resources are organized in a hierarchy
+True
+c)  In GCP IAM, policies at a child resource can be restrictive than that at the parent resource
+True
+
+4) Explain how GCP IAM roles differ from AWS IAM roles
+Project at the top level hierarchy, children inherit roles, AWS is permissions to resource. These permissions cannot be assigned directly, have to use a role
+
+5) In your assignment 5 and assignment 6, what was the role played by Google Container Registry?
+Stored our Docker image
+
+Skipping 6
+
+7) Suppose your Google Cloud VM IP Address is: 35.26.34.28.Show Google Cloud SQL creation command that allows traffic to Cloud SQL instanceonly from this Cloud VM.
+gcloud sql instances create instance1 --tier=db-f1-micro --authorized-networks=35.26.34.28
+
+8) Try the command from step 7 from an actual Google Cloud VM. Are you able to connect to theCloud SQL instance? Try it from your Laptop now. What happens?
+You can't connect to it unless you're from that IP address
+
+9) Explain how you can use the Sidecar pattern to enable a containerized application's access to Google Cloud SQL instance. Refer to:https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/master/cloudsql
+
+You would have this proxy authenticate with GCP and have permissions to connect to a database. Then, you would have your application make calls to this proxy, which would then make calls to MySQL.
+
+Not doing 9. Screw that.
+
+Homework 12
