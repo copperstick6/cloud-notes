@@ -245,3 +245,68 @@ That sounds right. A CaaS can orchestrate containers in the same way IaC orchest
 
 
 Homework 10
+
+1)  Explain following terms/concepts in your own words:
+-  continuous integration
+Easy way to validate that your code is correct through test cases that run on every push
+
+-  continuous delivery
+Good way to get bundled builds after test cases pass on the master branch
+
+-  continuous deployment
+Basically, whenever test cases pass and a release is created, be able to build to a development server or production
+
+2) Using your assignment 6, answer following questions:
+-  What is the role of Webhook?
+Role of a webhook is to tell the jenkins server that a new build was triggered and to run our build scripts to run
+-  How did we make sure that the Jenkins server is able to execute gcloud and kubectl commands successfully?
+We had a script to check the result of the commands. If they errored out, they would alert us through an email
+
+-  Why are we using Ingress as part of the Kubernetes deployment?
+We needed a global IP address to be created (this IP address needed to be consistent since our CICD pipeline needed to be able to grab results and post the new page to and from the same place)
+
+3) 'cld' is the command-line client of this PaaS (similar to eb cli, gcloud cli, kubectl, etc.),that you will install on your workspace machine (VM/Laptop).
+Assume that this PaaS needs to support stateless as well as stateful applications (i.e. applications that need MySQL database).
+-  Carefully describe all the components that you will need in this PaaS.
+Load balancer, test client that runs and obtains tests, builder, deployer that allocates resources to deploy to, ability to establish connection to Managed Services, monitors, configure environmental variables
+-  Explain if your PaaS will support any of the 12 factors? If so, how?
+storing config in environment, build/run stages, concurrency
+-  Explain the exact steps that need to happen for the application code from your machine to get deployed. What capability is required for each stage of the process.
+1. configure cld with env variables
+2. cld init, set config files
+3. cld create, creates S3 bucket for environment, security group for access to AWS itself for cld, Load balancer, any databases required, Cloudwatch for monitoring, new EC2 instance
+4. cld app test- runs tests
+5. cld app build - run build script
+6. cld app deploy - run deploy scripts
+
+4) What is the Pre-merge gating process? Why is it so called?
+Pre merge gating process is the process in which deployments are triggered. In order to be triggered, the user has to push an update, and for that update to pass tests, merged to master, and then be bundled to be deployed. It is so called this way since it's the gate before deployments occur.
+
+5) Based on your understanding of Pre-merge gating, explain what can possibly be a post-merge testing approach? Are there any drawbacks of this approach? If so, what?
+Running tests on the master branch after it gets merged? The main drawback is you don't know if your code is good and then you have to constantly make changes, rather than ensure that your master branch is always good
+
+6) In your assignment 6 we performed 'replacement' type of deployment. Explain how you will perform blue-green deployment instead. Provide specific details in your answer.
+
+Blue Green deployment would work on assignment by keeping the old deployment, routing a bit of traffic to the new container, and if nothing goes wrong, relabeling the old one, and then labeling the new container with the label of the old container.
+
+7) Why is continuous deployment to production environments a rare phenomenon?
+They usually require humans, because you want to communicate with customers if things are going to go down.
+
+8) Compare and contrast canary deployment approach with blue-green deployment approach.
+Traffic will be exposed to the new container with the blue-green approach. They are similar in that there is no downtime.
+
+9) How are managed services such as databases handled in a CICD setup?
+Usually separate.
+
+10) What is meant by configuration management?
+Configuring tools such as SQL database with credentials such as username and password
+
+11) In the class we have learnt several interpretations of the word 'DevOps'.Explain all these interpretations in your own words.
+DevOps refers to the following
+1. Functional role in which developer sometimes deploys
+2. Steps/Procedures in which it's more similar to Operations Engineer, except that they do a tad more programming
+3. Reality is devs need to understand infrastructure but work is still done with operations engineers
+
+Not doing 12. LUL
+
+Homework 11
