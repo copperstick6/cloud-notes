@@ -1,0 +1,32 @@
+Homework 6
+
+1. Explain the difference between Infrastructure-as-Code (IaC) and Infrastrcture-as-a-Service (IaaS).
+
+IaaS is usually a endpoint that you can use to manually provision services (a.k.a it's basically a web service you can make calls to create services)
+
+IaC is a service in which you declare what needs to be provisioned, not how it gets provisioned.
+
+Main difference between the two is IaaS allows you to configure how/what/when you want to get something provisioned, whereas in IaC, it just cares about provisioning your resources
+
+
+2)  State whether following statement are True or False:
+-  IaC cannot be used with PaaS
+False. PaaS can use IaC to configure its stuff
+
+-  CloudFormation is an example of IaC whereas Terraform is an example of PaaS
+False. both are IaC
+
+-  Elastic Beanstalk uses CloudFormation snippets to customize Infrastructure resources
+Definitely not. CloudFormation uses EB snippets to customize infrastructure resources
+
+3) Multiple choice. Select all that apply:
+A DevOps person is someone who:
+a)  Develops applications
+b)  Develops and deploys applications
+c)  Develops infrastructure code
+d)  Uses PaaSes
+e)  Uses CloudFormation
+
+Can be all of the above depending on design choices
+
+Not doing 4/5. Screw that.
