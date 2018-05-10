@@ -187,6 +187,61 @@ A label mechanism is how Kubernetes identifies a certain Kubernetes object so th
 A deployment controller creates a declarative model for creating/updating pods. It can be used to expose pods to the outside world
 
 
+Homework 9
 
 1)  In your own words describe what is the microservice architecture.
 Microservice architecture is where you separate out your code into small little pieces and put them on separate servers. This allows you the flexibility to program in multiple different languages.
+
+2)  Compare and contrast microservice architecture and monolithic architecture. Be specific in your answers.
+Monolithic architecture is a lot easier to start off writing, you just have a single code base.
+A microservice architecture means you potentially have a lot of different codebases that do different things to accomplish the same task.
+
+The advantage of a monolithic architecture is that it's easier to manage at first. You have everyone working on the same codebase. The disadvantage comes when you have to deploy this massive thing. If you have a single point of failure, it crashes the entire app.
+
+The microservice architecture is designed to mitigate this risk. Although it does take more time in the beginning to setup, the tradeoff is that you can have allocate manhours more effectively, as everyone is working on a different part, and you won't run into too many merge conflicts and issues. The bad part is that you have to make sure each microservice is fault tolerant of other microservices it depends on.
+
+Both are ways to do the same job, whichever one you choose is up to what you value as a manager.
+
+3)  Explain which option would you choose between PaaS and CaaS in each of the following scenarios.
+-  You want to start from application code and don't have to worry about writing Dockerfiles
+PaaS, no containerized code. You just deploy directly from the source cde
+
+-  Your application consists of separate components that are developed by different teams
+CaaS. If they are different components, you have different requirements and different languages, so you use Containers
+
+-  Your application needs to be deployed at the end of every week
+Both platforms support this
+
+-  Your application needs to be scaled up and rolled back to a previous version
+Both platforms support this
+
+-  You are still developing your application and want to deploy and test it during this phase
+Both plaforms support this, but preferably CaaS, as it's harder to transfer locally tested stuff to prod using PaaS
+
+
+4) Select the options that are incorrect.
+A microservice architecture is thus called because:
+a)  Such an architecture allows different teams to work on different parts of the application
+b)  Such an architecture requires same programming language to be used in different parts
+c)  It is easy to get started with this kind of architecture as services are microscopic in size
+d)  It allows different teams to release different parts of the application at different schedules
+B and C are incorrect
+
+
+5) Make a precise argument either supporting or refuting following statement."A PaaS is a CaaS with end-to-end functionality."
+
+A PaaS can be thought of in a such way, but the functionality and implementation of a PaaS as compared to a CaaS is completely different. PaaS do not necessarily have to use containerized services.
+
+6) Make a precise argument either supporting or refuting following statement."A CaaS is a IaC if containers are thought of as infrastructure resources."
+
+That sounds right. A CaaS can orchestrate containers in the same way IaC orchestrates resources
+
+
+7) Consider your assignment 5. Describe two different ways you can split it into microservice architecture. Explain pros/cons of each architecture.
+
+1. Split the database calls into a separate microservice. This affords you more security and fault tolerance, but it's more work and can affect the latency of the application
+
+2. Containerize the flask application so that it can run on all machines. More work, but more flexibility to run on other operating systems.
+
+
+Homework 10
