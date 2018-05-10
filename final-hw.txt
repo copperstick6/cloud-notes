@@ -97,7 +97,94 @@ Beanstalk automatically scales and balances based on the load generated. It does
 -  CloudFormation - when you're designing your system to handle a specific usecase, and want to share/reuse the configuration
 -  Elastic Beanstalk - fast deployment in crunchtime when you don't need to have fancy configs/security
 
+
+
 Homework 8
+
+1)  In your own words explain what is meant by container scheduling.
+
+Container Scheduling for Docker and other conainerized services is where each container can perform its own actions and jobs, but if it needs resources held by another container, it can take it directly from that container depending on the priority of the request.
+
+2)  True or False:
+-  Containers and VM are similar.
+True. They are quite similar in the Containers also contain a sort of "VM" of the OS required.
+
+-  CloudFormation and Kubernetes offer conceptually the same functionality.
+False. They offer different functionalities. CF allows you to directly provision resources, whereas Kube is a way to manage containers
+
+-  Google Cloud SQL and AWS RDS offer conceptually the same functionality.
+Yep. Both are Relational databases
+
+3) Explain with an example the binding issue as it pertains to containerized applications.
+
+The two main issues are
+1. Authorization: How do you grant permissions in your application containers to perform the required action on the managed instance?
+
+2. Traffic Restriction: How do you restrict the network that can reach your managed data store instance?
+
+For authorization, this can be solved with environment variables. Docker allows you to use ENV files, Kube uses variables in the pod.yaml file
+
+Traffic restriction can be solved through either a firewall to give permissions to the app container, to use a sidecar proxy container, or to automate the manual approach to modify the firewall to receive traffic only from the container cluster.
+
+4) The manual deployment steps given below keep your Cloud SQL instance wide-open.
+
+Why is it so? Be specific in your answer.
+We run the command: gcloud sql instances create instance1 --tier=db-f1-micro --authorized-networks=0.0.0.0/0
+
+This allows authorized access to come in from 0.0.0.0/0, which is a CIDR mask that allows all traffic.
+
+
+What steps would you take to ensure that your application deploys correctly AND the Cloud SQL is not wide open.
+
+You can simply restrict this access to your server's IP address by using a CIDR mask during deployment. This will ensure that the database is only accessible with that server.
+
+Not doing 5/6
+
+7) Explain what is the controller loop in Kubernetes.
+
+Controller loop is basically how things get done in Kubernetes. Basically if an action needs to occur, that is known as the desired state. If the desired state is not the same as the current state, Kubernetes will employ a reconciliatory action to make it the same state. This loop gets done all the time to ensure that actions that the user asks for actually occurs.
+
+8)Consider the Backing services factor: https://12factor.net/backing-services
+It says that your applications should be written such that it should be possible to swap out application's backing services. Think about your assignment 4 (Elastic Beantalk).
+Was it possible for you to easily swap out a local database when developing your application,  with an RDS instance when deploying the application to Elastic Beanstalk?
+No.
+
+If not, what was the reason this was not possible?
+I only had one version of mysql installed locally.
+Explain how you will overcome the issues?
+Spin up the required instance on RDS, since that's what EBS will run
+
+Consider the Config factor: https://12factor.net/config
+
+Explain why is it important to separate an application's configuration from its code.
+Config can change, it allows you more flexibility for deployment if you want to change something.
+
+What is the problem with using config files as a configuration mechanism?
+You can accidentally push stuff into github and also they can be separated out very commonly if you have a lot of different sources
+
+
+9) Multiple choice. Choose all those that apply.
+ Docker-based containers are a good choice for writing Twelve-factor based web applications because:
+ a) Docker containers allow defining application's configuration through ENV variables
+ b) Docker uses image layering when building application's container images which helps with the Dependency management factor
+ c) Docker containers can be orchestrated through Kubernetes
+ d) Docker containers run as processes making them easy to scale up / scale down
+ e) Docker containers are built using Dockerfile which provides a way to capture application's OS-level dependencies in addition to any language-level dependencies (which are captured through language-specific dependency files such as pom.xml, requirements.txt, package.json, etc.)
+
+all of the above
+
+10) With regards to Kubernetes explain following terms in your own words:
+-  What is a Pod?
+A pod represents a unite of deployment, which contains the container required, storage resources required, unique IP address, and how the container should be run
+
+-  What is a Service?
+A service defines a set of pods and a policy to access them
+
+-  What is the purpose of Label mechanism?
+A label mechanism is how Kubernetes identifies a certain Kubernetes object so that it can perform actions on it
+
+-  What is Deployment Controller
+A deployment controller creates a declarative model for creating/updating pods. It can be used to expose pods to the outside world
 
 
 
