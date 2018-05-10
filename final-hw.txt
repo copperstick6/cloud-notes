@@ -30,3 +30,76 @@ e)  Uses CloudFormation
 Can be all of the above depending on design choices
 
 Not doing 4/5. Screw that.
+
+Homework 7
+
+1)  Explain how does Elastic Beanstalk bind applications to external services such as RDS instances?
+
+EBS creates the RDS instance for you, and stores that data into the environment variables, and the developer uses those variables to connect to the database.
+
+2)  Based on your experience of using Elastic Beanstalk, write advantages and disadvantages of usinga PaaS system for deploying applications. Be specific in your answer (refer to issues that youran into)
+
+Advantages: It's easy to set up and configure. It was extremely easy to deploy that simple flask application, I ran into no issues with deployment
+Disadvantages: It's hard to develop locally (had to delete/rerun the ebs instance)
+
+3)  State whether following statements are True or False:
+-  Elastic Beanstalk allows customization of underlying infrastructure resources
+True. Configurable via .ebexttensions
+
+-  CloudFormation and Elastic Beanstalk serve same purpose
+False. Some Stuff done by EBS can also be done by CF, but CF does a lot more with provisioning since it is IaC
+
+-  An application that is deployed using Elastic Beanstalk cannot be deployed using CloudFormation
+False, You can specify a template with EB resources and deploy it using CF
+
+
+-  Operations engineers are the main target users of Elastic Beanstalk
+False. Developers are the main target users.
+
+
+4) List the differences between deploying applications using Elastic Beanstalk and using CloudFormation
+
+EB is easier to use and deploy, but you get less control over how it is deployed. CF grants you more control, but is harder to manage, as you have to do all the configuration youself
+
+Not doing 5.
+
+Elastic Beanstalk supports DevOps process because
+a)  Application developers can perform application deployments
+b)  It enables Operations Engineers to write testable operations scripts
+c)  It supports creation of different application environments (dev/test/production)
+d)  It supports binding of applications with managed services like RDS instances
+e)  It uses CloudFormation internally
+
+a,c,d
+
+
+7) Consider your blogging solution from Midterm. Explain how can you use Elastic Beanstalk to deploy this blogging solution. Focus on key details in your answer.
+
+Use EBS to bind to S3 service
+
+8) Explain the key points of AWS IAM model as it relates to Elastic Beanstalk
+
+User Policies- permissions that your IAM user needs to interact with EBS. EBS will use the permissions given to the IAM user when creating other AWS resources. EBS uses user permissions to launch all resources in an environment
+
+Service Role- permissions needed by EBS to interact with other AWS services on your behalf. This role contains all the necessary permissions that allows EBS to call other AWS services without user intervention. This role is created by default when creating an environment
+
+Instance Profile- Role and permissions granted to EC2 instance in your environment. This is used by EBS to upload logs to S3
+
+9) Compare and contrast Elastic Beanstalk with Kubernetes
+
+Beanstalk is PaaS whereas Kubernetes is CaaS.
+
+Beanstalk automatically scales and balances based on the load generated. It does all the EC2 management for you. Kubernetes also autoscales based on load.
+
+
+10) Give examples when you would prefer using each of the following systems over others:
+-  EC2 - when you want to run a simple task
+-  CloudFormation - when you're designing your system to handle a specific usecase, and want to share/reuse the configuration
+-  Elastic Beanstalk - fast deployment in crunchtime when you don't need to have fancy configs/security
+
+Homework 8
+
+
+
+1)  In your own words describe what is the microservice architecture.
+Microservice architecture is where you separate out your code into small little pieces and put them on separate servers. This allows you the flexibility to program in multiple different languages.
